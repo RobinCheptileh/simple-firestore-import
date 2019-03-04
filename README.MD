@@ -14,6 +14,8 @@ Move into the directory:
 
 ## Usage
 
+Provide your **Firebase or Google Cloud service account key**, data file and the name of the collection.
+
     $ simple-firestore-import.py [path/to/serviceAccount.json] [path/to/dataFile(.json|.yaml|.yml)] [name of collection]
     
 Or without arguments:
