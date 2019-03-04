@@ -11,6 +11,10 @@ Clone the repo:
 Move into the directory:
 
     $ cd simple-firestore-import
+    
+Install dependencies:
+
+    $ pip install -r requirements.txt
 
 ## Usage
 
