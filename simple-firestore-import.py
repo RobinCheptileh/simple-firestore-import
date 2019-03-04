@@ -20,14 +20,21 @@ def import_data(service_account_key_path, data_file, collection_name):
         data = get_data(data_file)
         check_data(data)
 
+        doc_ref = db.collection(collection_name)
+        for datum in data:
+            doc_ref.add(datum)
+            print("Added: {}".format(datum))
+
     except Exception as error:
-        print(str(error))
+        print("\nERROR: {}".format(str(error)))
+    else:
+        print("\nImport complete")
 
 
 def check_data(data):
     if isinstance(data, (list, tuple,)):
         for datum in data:
-            if not isinstance(datum, (object,)):
+            if not isinstance(datum, (dict,)):
                 raise ValueError("An object expected, got {}".format(type(datum)))
     else:
         raise ValueError("An array expected, got {}".format(type(data)))
@@ -58,13 +65,18 @@ def get_yaml_data(data_file):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 4:
-        service_account_path = sys.argv[1]
-        data_file_path = sys.argv[2]
-        name_of_collection = sys.argv[3]
-    else:
-        service_account_path = input("Path to serviceAccountKey.json: ")
-        data_file_path = input("Path to data file: ")
-        name_of_collection = input("Name of collection: ")
+    try:
+        if len(sys.argv) == 4:
+            service_account_path = sys.argv[1]
+            data_file_path = sys.argv[2]
+            name_of_collection = sys.argv[3]
+        else:
+            service_account_path = input("Path to serviceAccountKey.json: ")
+            data_file_path = input("Path to data file: ")
+            name_of_collection = input("Name of collection: ")
 
-    import_data(service_account_path, data_file_path, name_of_collection)
+        import_data(service_account_path, data_file_path, name_of_collection)
+    except KeyboardInterrupt as keyboard_error:
+        print("\nProcess interrupted")
+    finally:
+        print("\nGood Bye!")
