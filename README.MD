@@ -27,6 +27,30 @@ Or without arguments:
 
 The program expects an array of objects (dictionaries) to work.
 
+**CORRECT DATA FILE FORMAT**
+
+```json
+[
+    {
+        "name": "Jane Doe",
+        "email": "janedoe@mail.com"
+    },
+    {
+        "name": "John Doe",
+        "email": "johndoe@mail.com"
+    }
+]
+```
+
+```yaml
+
+---
+- name: Jane Doe
+  email: janedoe@mail.com
+- name: John Doe
+  email: johndoe@mail.com
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/robincheptileh/simple-firestore-import. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
