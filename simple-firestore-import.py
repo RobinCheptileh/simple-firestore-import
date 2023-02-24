@@ -4,6 +4,7 @@ import os
 import sys
 import json
 import yaml
+import io
 
 import firebase_admin
 from firebase_admin import credentials
@@ -55,7 +56,7 @@ def get_data(data_file):
 
 
 def get_json_data(data_file):
-    with open(data_file, "r") as read_file:
+    with io.open(data_file, "r", encoding='utf-8-sig') as read_file:
         return json.load(read_file)
 
 
