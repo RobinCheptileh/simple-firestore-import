@@ -22,7 +22,10 @@ def import_data(service_account_key_path, data_file, collection_name):
 
         doc_ref = db.collection(collection_name)
         for datum in data:
-            doc_ref.add(datum)
+            if datum.get("id") or datum.get("_id"):
+                doc_ref.document(datum.get("id")).set(datum)
+            else:
+                doc_ref.add(datum)
             print("Added: {}".format(datum))
 
     except Exception as error:
